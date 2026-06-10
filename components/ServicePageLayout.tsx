@@ -6,7 +6,7 @@ type Props = {
   title: string
   titleHighlight: string
   description: string
-  seoTitle: string
+  seoTitle?: string
   features: string[]
   cta: string
   children?: React.ReactNode
