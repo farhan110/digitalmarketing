@@ -17,3 +17,4 @@ export function StatCounter({ target, suffix='', label }: { target:number; suffi
   return (<div ref={ref} className="sb-item"><div className="sb-num">{val}{suffix}</div><div className="sb-lbl">{label}</div></div>)
 }
 export function Eye({ text }: { text:string }) { return <p className="eye">{text}</p> }
+export const SectionEyebrow = Eye
