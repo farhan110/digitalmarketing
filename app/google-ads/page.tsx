@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import { ServicePageLayout } from '@/components/ServicePageLayout'
-export const metadata: Metadata = { title:'Google Ads Management in Lucknow | Mars', description:'Get more high-intent leads with Google Ads campaigns, keyword strategy, conversion tracking, and landing page optimization.' }
+import { SERVICES } from '@/lib/site'
+
+const service = SERVICES.find((s) => s.slug === 'google-ads')!
+
+export const metadata: Metadata = {
+  title: "Google Ads Management | Capture High-Intent Search Demand",
+  description: "Google Ads management: search campaigns, keyword strategy, conversion tracking, and budget optimization that puts you in front of people already searching for your service.",
+  keywords: service.keywords,
+  alternates: { canonical: '/google-ads' },
+  openGraph: { title: "Google Ads Management | Capture High-Intent Search Demand", description: "Google Ads management: search campaigns, keyword strategy, conversion tracking, and budget optimization that puts you in front of people already searching for your service." },
+}
+
 export default function Page() {
-  return (
-    <ServicePageLayout
-      eyebrow="Google Ads"
-      title="Google Ads Management in"
-      titleHighlight="Lucknow"
-      description="Google Ads are ideal when people are already searching for what you offer. We create search campaigns that capture demand, support remarketing, and send traffic to landing pages built for action."
-      features={["Search campaign setup and management","Keyword and negative keyword strategy","Conversion tracking and analytics","Landing page optimization","Budget optimization and bid management","Search term analysis and refinement","Remarketing campaign setup"]}
-      cta="Start getting in front of people already looking for your service."
-    />
-  )
+  return <ServicePageLayout service={service} />
 }

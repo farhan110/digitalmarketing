@@ -1,33 +1,60 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Eye } from '@/components/StatCounter'
-import { MarsPlanetSmall } from '@/components/MarsPlanet'
-export const metadata: Metadata = { title:'Blog | Mars', description:'Digital marketing insights, SEO tips, and growth strategies for Lucknow businesses.' }
+import { PageHero } from '@/components/PageHero'
+import { Reveal } from '@/components/Reveal'
+import { CTASection } from '@/components/CTASection'
+
+export const metadata: Metadata = {
+  title: 'Blog | Digital Marketing Insights for Lucknow Businesses',
+  description: 'Practical guides on SEO, Google Ads, Meta Ads, content marketing, and AI for local businesses in Lucknow and across India.',
+  alternates: { canonical: '/blog' },
+}
+
 const posts = [
-  { t:'Best Digital Marketing Strategy for Local Businesses in Lucknow', d:'How to build an effective online presence that brings real customers to your Lucknow business using SEO, ads, and social media.' },
-  { t:'SEO vs Google Ads: Which One Should You Start With?', d:'A practical comparison to help you decide whether to invest in organic search or paid advertising first based on your budget and goals.' },
-  { t:'How Meta Ads Can Help Restaurants and Retail Brands Grow', d:'Learn how Facebook and Instagram advertising can drive footfall, inquiries, and sales for food and retail businesses.' },
-  { t:'Why Content Marketing is Important for Service Businesses', d:'How strategic content builds trust, improves SEO, and turns website visitors into paying customers over time.' },
-  { t:'How AI Can Speed Up Marketing Without Hurting Quality', d:'A practical guide to using AI tools for content, research, and campaign planning while keeping your brand voice authentic.' },
-  { t:'The Complete Local SEO Guide for Lucknow Businesses', d:'Everything you need to know about ranking on Google Maps, optimizing your Google Business Profile, and dominating local search.' },
+  { title: 'Best digital marketing strategy for local businesses in Lucknow', desc: 'A practical playbook for local visibility: search, social, ads, and the order to do them in.', tag: 'Strategy', g: 'from-mars-500/25 to-mars-600/5' },
+  { title: 'SEO vs Google Ads: which one should you start with?', desc: 'Organic vs paid search — how to decide based on your budget, timeline, and demand.', tag: 'SEO · Ads', g: 'from-nebula-500/25 to-nebula-500/5' },
+  { title: 'How Meta Ads can help restaurants and retail brands grow', desc: 'Creative, targeting, and offers that turn Instagram and Facebook into a lead channel.', tag: 'Meta Ads', g: 'from-ion-400/20 to-ion-400/5' },
+  { title: 'Why content marketing is important for service businesses', desc: 'How content builds trust before the first call — and shortens your sales cycle.', tag: 'Content', g: 'from-mars-500/20 to-nebula-500/10' },
+  { title: 'How AI can speed up marketing without hurting quality', desc: 'Where AI helps (research, drafts, workflows) and where humans must stay in charge.', tag: 'AI Marketing', g: 'from-ion-400/20 to-mars-500/10' },
 ]
-export default function Blog() {
-  return (<>
-    <div className="pg-hero"><div className="contain grid lg:grid-cols-[1fr_200px] gap-8 items-center">
-      <div><Eye text="Blog" /><h1 className="h-sec font-grotesk mb-4">Marketing <span className="grad">Insights</span></h1>
-      <p className="lead">Practical tips, strategies, and guides to help your business grow online. Written for business owners, not marketers.</p></div>
-      <div className="hidden lg:flex justify-end opacity-80"><MarsPlanetSmall size={140} /></div>
-    </div></div>
-    <div className="sec"><div className="contain">
-      <div className="grid-2">{posts.map((p,i) => (
-        <div key={i} className="glass group cursor-default">
-          <div className="text-[10px] font-medium tracking-[2px] uppercase text-m-or mb-3">Article</div>
-          <h2 className="font-grotesk text-[17px] md:text-[19px] font-semibold mb-3 leading-tight">{p.t}</h2>
-          <p className="text-[13px] text-m-mu leading-[1.75] font-light mb-4">{p.d}</p>
-          <span className="text-[12px] text-m-dm">Coming soon</span>
+
+export default function BlogPage() {
+  return (
+    <>
+      <PageHero
+        chip="Blog"
+        title="Marketing insights that move numbers"
+        intro="Practical, no-jargon guides on SEO, ads, content, and AI — written for business owners, not marketers."
+      />
+
+      <section className="mx-auto max-w-7xl px-5 py-10">
+        <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((p, i) => (
+            <Reveal key={p.title} delay={i * 90}>
+              <article className="glass glass-hover group flex h-full flex-col overflow-hidden">
+                <div className={`flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${p.g}`}>
+                  <span className="font-grotesk text-4xl opacity-40">✦</span>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-mars-300">{p.tag}</span>
+                  <h2 className="mt-2 font-grotesk text-lg font-semibold leading-snug">{p.title}</h2>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{p.desc}</p>
+                  <span className="mt-4 text-sm font-semibold text-white/40">Coming soon</span>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+          <Reveal delay={450}>
+            <Link href="/contact" className="glass glass-hover flex h-full flex-col items-center justify-center p-10 text-center">
+              <span className="font-grotesk text-2xl font-bold text-gradient">Have a topic in mind?</span>
+              <p className="mt-3 text-sm text-white/60">Ask us anything about marketing your business — we may write about it next.</p>
+              <span className="btn-ghost mt-6 text-sm">Ask Mars →</span>
+            </Link>
+          </Reveal>
         </div>
-      ))}</div>
-    </div></div>
-    <div className="cta-sec"><div className="cta-glow" /><h2 className="h-sec font-grotesk mb-3 relative">Want <span className="grad">custom advice</span> for your business?</h2><p className="text-[14px] text-m-mu max-w-md mx-auto mb-7 leading-relaxed font-light relative">We will give you a practical plan based on your specific situation.</p><Link href="/contact" className="btn-cta relative">Book a Free Strategy Call</Link></div>
-  </>)
+      </section>
+
+      <CTASection />
+    </>
+  )
 }

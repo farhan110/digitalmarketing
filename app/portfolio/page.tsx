@@ -1,28 +1,68 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Eye } from '@/components/StatCounter'
-import { MarsPlanetSmall } from '@/components/MarsPlanet'
-export const metadata: Metadata = { title:'Portfolio & Proof of Work | Mars', description:'See examples of social media management, content creation, and brand work managed by Mars.' }
-export default function Portfolio() {
-  return (<>
-    <div className="pg-hero"><div className="contain grid lg:grid-cols-[1fr_200px] gap-8 items-center">
-      <div><Eye text="Portfolio" /><h1 className="h-sec font-grotesk mb-4">Proof of <span className="grad">Work</span></h1>
-      <p className="lead">Real accounts. Real content. Real management. Here are examples of the kind of work we do for our clients.</p></div>
-      <div className="hidden lg:flex justify-end opacity-80"><MarsPlanetSmall size={140} /></div>
-    </div></div>
-    <div className="sec"><div className="contain">
-      <div className="grid-3">{[
-        { t:'Food & Beverage Brand', d:'Managed social media content and profile growth for a food and beverage brand. Strategy, content calendar, Reels, and community management.' },
-        { t:'Luxury Retail Store', d:'Created brand-led content for a luxury retail store. Visual identity, seasonal campaigns, and premium storytelling across Instagram.' },
-        { t:'Consumer Health Brand', d:'Built content direction for a consumer health brand with educational and product-focused posts. Grew reach from zero to 1L+ monthly.' },
-        { t:'Automotive Showroom', d:'Managed digital advertising and social presence for an automotive showroom. Google Ads, Meta Ads, and video content production.' },
-        { t:'Interior Design Studio', d:'Portfolio storytelling, before-after content, and lead generation campaigns for a premium interior design studio in Lucknow.' },
-        { t:'Healthcare Clinic', d:'Local SEO, Google Business Profile management, and patient acquisition campaigns for a healthcare practice in Lucknow.' },
-      ].map(p => (
-        <div key={p.t} className="glass"><div className="w-full h-32 rounded-lg bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/[0.06] mb-4 flex items-center justify-center text-m-dm text-[12px]">Client Screenshot</div>
-        <h3 className="font-grotesk text-[15px] font-semibold mb-2">{p.t}</h3><p className="text-[13px] text-m-mu leading-[1.7] font-light">{p.d}</p></div>
-      ))}</div>
-    </div></div>
-    <div className="cta-sec"><div className="cta-glow" /><h2 className="h-sec font-grotesk mb-3 relative">Want to see your brand <span className="grad">here?</span></h2><p className="text-[14px] text-m-mu max-w-md mx-auto mb-7 leading-relaxed font-light relative">Let us build your growth story.</p><Link href="/contact" className="btn-cta relative">Book a Free Strategy Call</Link></div>
-  </>)
+import { PageHero } from '@/components/PageHero'
+import { Reveal } from '@/components/Reveal'
+import { CTASection } from '@/components/CTASection'
+
+export const metadata: Metadata = {
+  title: 'Portfolio & Proof of Work | Mars Digital Marketing Lucknow',
+  description: 'Managed social media accounts, brand-led content, and ad strategy work across food & beverage, luxury retail, and consumer brands.',
+  alternates: { canonical: '/portfolio' },
+}
+
+const work = [
+  { title: 'Food & Beverage Brand', caption: 'Managed social media content and profile growth for a food and beverage brand.', g: 'from-mars-500/30 to-mars-600/5', tag: 'Instagram · Content · Growth' },
+  { title: 'Luxury Retail Store', caption: 'Created brand-led content for a luxury retail store.', g: 'from-nebula-500/30 to-nebula-500/5', tag: 'Branding · Content Direction' },
+  { title: 'Consumer Honey Brand', caption: 'Built content direction for a consumer honey brand with educational and product-focused posts.', g: 'from-ion-400/25 to-ion-400/5', tag: 'Content Strategy · Education' },
+]
+
+const partners = ['Brand One', 'Brand Two', 'Brand Three', 'Brand Four', 'Brand Five', 'Brand Six']
+
+export default function PortfolioPage() {
+  return (
+    <>
+      <PageHero
+        chip="Portfolio · Proof of Work"
+        title="Real brands. Real content. Real management."
+        intro="A look at the social media accounts, content direction, and brand work we manage — across food, retail, and consumer brands."
+      />
+
+      <section className="mx-auto max-w-7xl px-5 py-10">
+        <div className="grid gap-7 md:grid-cols-3">
+          {work.map((w, i) => (
+            <Reveal key={w.title} delay={i * 110}>
+              <article className="glass glass-hover overflow-hidden">
+                <div className={`flex aspect-[4/3] items-center justify-center bg-gradient-to-br ${w.g}`}>
+                  <span className="rounded-full border border-white/15 bg-space-950/60 px-4 py-1.5 text-xs uppercase tracking-widest text-white/60 backdrop-blur">Add screenshot</span>
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-mars-300">{w.tag}</span>
+                  <h2 className="mt-2 font-grotesk text-lg font-semibold">{w.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">{w.caption}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={200}>
+          <p className="mt-6 text-center text-xs text-white/40">
+            Tip: replace the placeholders above with your Instagram screenshots — each card supports an image with its caption.
+          </p>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16">
+        <Reveal>
+          <p className="text-center text-xs uppercase tracking-[.25em] text-white/40">Brands we have worked with</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {partners.map((p) => (
+              <span key={p} className="font-grotesk text-lg font-semibold text-white/25 transition hover:text-white/60">{p}</span>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-xs text-white/35">Replace with client logos — keep it minimal so it feels premium.</p>
+        </Reveal>
+      </section>
+
+      <CTASection />
+    </>
+  )
 }

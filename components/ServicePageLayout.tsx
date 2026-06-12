@@ -1,44 +1,77 @@
 import Link from 'next/link'
-import { MarsPlanetSmall } from './MarsPlanet'
+import type { Service } from '@/lib/site'
+import { SERVICES } from '@/lib/site'
+import { Reveal } from './Reveal'
+import { Icon } from './Icons'
+import { CTASection } from './CTASection'
 
-type Props = {
-  eyebrow: string
-  title: string
-  titleHighlight: string
-  description: string
-  seoTitle?: string
-  features: string[]
-  cta: string
-  children?: React.ReactNode
-}
-
-export function ServicePageLayout({ eyebrow, title, titleHighlight, description, features, cta, children }: Props) {
+export function ServicePageLayout({ service }: { service: Service }) {
+  const others = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3)
   return (
     <>
-      <div className="pg-hero">
-        <div className="contain grid lg:grid-cols-[1fr_200px] gap-8 items-center">
-          <div>
-            <p className="eye">{eyebrow}</p>
-            <h1 className="h-sec font-grotesk mb-4">{title} <span className="grad">{titleHighlight}</span></h1>
-            <p className="lead">{description}</p>
-          </div>
-          <div className="hidden lg:flex justify-end opacity-80"><MarsPlanetSmall size={140} /></div>
+      <section className="relative mx-auto max-w-7xl px-5 pb-12 pt-36 md:pt-44">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <span className="chip">{service.tagline}</span>
+            <h1 className="mt-6 font-grotesk text-4xl font-bold leading-tight md:text-5xl">
+              {service.name} <span className="text-gradient">that performs</span>
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-white/70">{service.description}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/contact" className="btn-primary">Book a Free Strategy Call</Link>
+              <Link href="/case-studies" className="btn-ghost">View Case Studies</Link>
+            </div>
+          </Reveal>
+          <Reveal delay={150}>
+            <div className="glass glass-hover relative flex aspect-square max-w-md items-center justify-center justify-self-center p-10">
+              <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-br from-mars-500/10 via-transparent to-nebula-500/10" />
+              <Icon name={service.icon} className="h-28 w-28 text-mars-400 drop-shadow-[0_0_24px_rgba(255,107,61,.5)]" />
+              <span className="planet-ring !inset-6"><span className="sat" /></span>
+            </div>
+          </Reveal>
         </div>
-      </div>
-      <div className="sec"><div className="contain">
-        <h2 className="h-sub font-grotesk mb-6">What We <span className="grad">Deliver</span></h2>
-        <ul className="feat-list max-w-2xl">{features.map((f,i) => <li key={i}>{f}</li>)}</ul>
-      </div></div>
-      {children}
-      <div className="cta-sec">
-        <div className="cta-glow" />
-        <h2 className="h-sec font-grotesk mb-3 relative">{cta}</h2>
-        <p className="text-[14px] text-m-mu max-w-md mx-auto mb-7 leading-relaxed relative font-light">Tell us your goal, and we will suggest the best starting point.</p>
-        <div className="flex gap-3 justify-center flex-wrap relative">
-          <Link href="/contact" className="btn-cta">Book a Free Strategy Call</Link>
-          <Link href="/services" className="btn-g">View All Services</Link>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-14">
+        <Reveal><h2 className="text-center font-grotesk text-3xl font-bold md:text-4xl">What&apos;s included</h2></Reveal>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {service.features.map((f, i) => (
+            <Reveal key={f} delay={i * 80}>
+              <div className="glass glass-hover flex items-start gap-4 p-6">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mars-500/15 text-mars-400">
+                  <Icon name="check" className="h-4 w-4" />
+                </span>
+                <p className="font-medium text-white/85">{f}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-10">
+        <Reveal>
+          <p className="mx-auto max-w-3xl text-center text-xl font-medium leading-relaxed text-white/80">
+            <span className="text-gradient-mars font-grotesk text-2xl">“</span> {service.cta} <span className="text-gradient-mars font-grotesk text-2xl">”</span>
+          </p>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-14">
+        <Reveal><h2 className="text-center font-grotesk text-2xl font-bold">Pairs well with</h2></Reveal>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {others.map((s, i) => (
+            <Reveal key={s.slug} delay={i * 90}>
+              <Link href={`/${s.slug}`} className="glass glass-hover block p-6">
+                <Icon name={s.icon} className="h-8 w-8 text-mars-400" />
+                <h3 className="mt-4 font-grotesk text-lg font-semibold">{s.name}</h3>
+                <p className="mt-2 text-sm text-white/60">{s.short}</p>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <CTASection />
     </>
   )
 }

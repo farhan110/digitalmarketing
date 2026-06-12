@@ -1,20 +1,31 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-export function StatCounter({ target, suffix='', label }: { target:number; suffix?:string; label:string }) {
-  const [val, setVal] = useState(0)
+
+export function StatCounter({ value, suffix = '', label }: { value: number; suffix?: string; label: string }) {
+  const [n, setN] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
-  const fired = useRef(false)
   useEffect(() => {
-    const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting || fired.current) return; fired.current = true
-      let s: number|null = null
-      function tick(now: number) { if(!s) s=now; const p=Math.min((now-s)/1600,1); setVal(Math.floor((1-Math.pow(1-p,3))*target)); if(p<1) requestAnimationFrame(tick) }
-      requestAnimationFrame(tick); obs.disconnect()
-    }, { threshold:.4 })
-    obs.observe(el); return () => obs.disconnect()
-  }, [target])
-  return (<div ref={ref} className="sb-item"><div className="sb-num">{val}{suffix}</div><div className="sb-lbl">{label}</div></div>)
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return
+      io.disconnect()
+      const start = performance.now()
+      const dur = 1600
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / dur)
+        setN(Math.round(value * (1 - Math.pow(1 - p, 3))))
+        if (p < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, { threshold: 0.4 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [value])
+  return (
+    <div ref={ref} className="text-center">
+      <div className="font-grotesk text-4xl font-bold text-gradient-mars md:text-5xl">{n}{suffix}</div>
+      <div className="mt-2 text-sm text-white/60">{label}</div>
+    </div>
+  )
 }
-export function Eye({ text }: { text:string }) { return <p className="eye">{text}</p> }
-export const SectionEyebrow = Eye

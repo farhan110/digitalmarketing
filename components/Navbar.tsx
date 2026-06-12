@@ -1,50 +1,79 @@
 'use client'
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { SERVICES } from '@/lib/site'
 
 const links = [
-  { href:'/', label:'Home' },
-  { href:'/about', label:'About' },
-  { href:'/services', label:'Services' },
-  { href:'/case-studies', label:'Case Studies' },
-  { href:'/portfolio', label:'Portfolio' },
-  { href:'/blog', label:'Blog' },
-  { href:'/contact', label:'Contact' },
+  { href: '/about', label: 'About' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/faq', label: 'FAQ' },
 ]
 
 export function Navbar() {
-  const p = usePathname()
   const [open, setOpen] = useState(false)
-  const [sc, setSc] = useState(false)
-  useEffect(() => { const h = () => setSc(window.scrollY > 40); window.addEventListener('scroll',h); return () => window.removeEventListener('scroll',h) }, [])
-  useEffect(() => { setOpen(false) }, [p])
+  const [scrolled, setScrolled] = useState(false)
+  const [svcOpen, setSvcOpen] = useState(false)
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 24)
+    fn()
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => window.removeEventListener('scroll', fn)
+  }, [])
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${sc ? 'py-2.5 bg-[rgba(10,6,18,0.92)]' : 'py-3.5 bg-[rgba(10,6,18,0.6)]'} backdrop-blur-xl border-b border-white/[0.08]`}>
-      <div className="flex items-center justify-between px-4 md:px-8">
-        <Link href="/" className="flex items-center gap-2 font-grotesk font-bold text-[15px] md:text-base text-white">
-          <span className="relative w-6 h-6 rounded-[7px] bg-[linear-gradient(135deg,#ff6b35,#f72585,#7c3aed)] flex items-center justify-center text-[11px] font-black overflow-hidden">M<span className="absolute inset-0 bg-[linear-gradient(135deg,transparent,rgba(255,255,255,0.3),transparent)] animate-[shine_3s_linear_infinite]" /></span>
-          MARS
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-space-950/80 shadow-lg shadow-black/30 backdrop-blur-xl' : 'bg-transparent'}`}>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4" aria-label="Main navigation">
+        <Link href="/" className="group flex items-center gap-2.5" aria-label="Mars — home">
+          <span className="relative flex h-9 w-9 items-center justify-center">
+            <span className="absolute inset-0 rounded-full bg-gradient-to-br from-mars-400 to-mars-600 shadow-glow-sm transition-transform duration-300 group-hover:scale-110" />
+            <span className="absolute -inset-1 rounded-full border border-dashed border-nebula-400/50" style={{ animation: 'spin 14s linear infinite' }} />
+          </span>
+          <span className="font-grotesk text-xl font-bold tracking-wide">MARS</span>
         </Link>
-        <ul className="hidden lg:flex gap-6">
-          {links.map(l => (
-            <li key={l.href}><Link href={l.href} className={`relative text-[12px] font-medium transition-colors ${p === l.href || (l.href !== '/' && p?.startsWith(l.href)) ? 'text-white' : 'text-m-mu hover:text-white'}`}>{l.label}{(p === l.href || (l.href !== '/' && p?.startsWith(l.href))) && <span className="absolute -bottom-1 left-0 right-0 h-px bg-[linear-gradient(90deg,#ff6b35,#f72585)] rounded-full" />}</Link></li>
+
+        <div className="hidden items-center gap-7 text-sm font-medium text-white/75 lg:flex">
+          <div className="relative" onMouseEnter={() => setSvcOpen(true)} onMouseLeave={() => setSvcOpen(false)}>
+            <Link href="/services" className="flex items-center gap-1 py-2 transition hover:text-white">
+              Services <span className={`text-[10px] transition-transform ${svcOpen ? 'rotate-180' : ''}`}>▼</span>
+            </Link>
+            {svcOpen && (
+              <div className="glass absolute left-1/2 top-full w-64 -translate-x-1/2 p-2">
+                {SERVICES.map((s) => (
+                  <Link key={s.slug} href={`/${s.slug}`} className="block rounded-lg px-4 py-2.5 transition hover:bg-mars-500/10 hover:text-mars-300">
+                    {s.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="py-2 transition hover:text-white">{l.label}</Link>
           ))}
-        </ul>
-        <Link href="/contact" className="hidden lg:inline-flex btn-p text-[11px] !px-5 !py-2.5">Book a Free Strategy Call</Link>
-        <button className="lg:hidden flex flex-col gap-1.5 p-2" onClick={() => setOpen(o => !o)} aria-label="Menu">
-          <span className={`block w-5 h-px bg-white transition-all ${open ? 'rotate-45 translate-y-[6px]' : ''}`} />
-          <span className={`block w-5 h-px bg-white transition-all ${open ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-white transition-all ${open ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+          <Link href="/contact" className="btn-primary !px-5 !py-2.5 text-sm">Book a Free Strategy Call</Link>
+        </div>
+
+        <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
+          <div className="space-y-1.5">
+            <span className={`block h-0.5 w-6 bg-white transition ${open ? 'translate-y-2 rotate-45' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-white transition ${open ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-white transition ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+          </div>
         </button>
-      </div>
+      </nav>
+
       {open && (
-        <div className="lg:hidden fixed inset-0 bg-m-bg/[0.97] backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 pt-16">
-          <button className="absolute top-5 right-5 text-m-mu text-xl" onClick={() => setOpen(false)}>✕</button>
-          {links.map(l => (<Link key={l.href} href={l.href} className={`font-grotesk text-lg tracking-[2px] uppercase ${p === l.href ? 'text-m-or' : 'text-m-mu'}`}>{l.label}</Link>))}
-          <Link href="/contact" className="btn-p mt-2">Book a Free Strategy Call</Link>
+        <div className="border-t border-white/10 bg-space-950/95 px-5 pb-6 pt-2 backdrop-blur-xl lg:hidden">
+          <Link href="/services" onClick={() => setOpen(false)} className="block py-2.5 font-semibold text-mars-300">All Services</Link>
+          {SERVICES.map((s) => (
+            <Link key={s.slug} href={`/${s.slug}`} onClick={() => setOpen(false)} className="block py-2 pl-3 text-white/70">{s.name}</Link>
+          ))}
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-2.5 text-white/85">{l.label}</Link>
+          ))}
+          <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 w-full">Book a Free Strategy Call</Link>
         </div>
       )}
-    </nav>
+    </header>
   )
 }

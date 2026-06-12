@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import { ServicePageLayout } from '@/components/ServicePageLayout'
-export const metadata: Metadata = { title:'AI Marketing Automation | Mars', description:'Use AI to speed up content workflows, improve marketing efficiency, and scale repetitive tasks without losing quality.' }
+import { SERVICES } from '@/lib/site'
+
+const service = SERVICES.find((s) => s.slug === 'ai-marketing')!
+
+export const metadata: Metadata = {
+  title: "AI Marketing Automation | Faster, Smarter, Human-Led",
+  description: "AI marketing automation: research and ideation support, prompt workflows, reporting helpers, and customer journey optimization \u2014 AI speed with human-led strategy and quality.",
+  keywords: service.keywords,
+  alternates: { canonical: '/ai-marketing' },
+  openGraph: { title: "AI Marketing Automation | Faster, Smarter, Human-Led", description: "AI marketing automation: research and ideation support, prompt workflows, reporting helpers, and customer journey optimization \u2014 AI speed with human-led strategy and quality." },
+}
+
 export default function Page() {
-  return (
-    <ServicePageLayout
-      eyebrow="AI Marketing"
-      title="AI Marketing"
-      titleHighlight="Automation"
-      description="AI should make marketing faster and smarter, not generic. We use AI tools to support research, planning, content drafting, campaign ideas, and workflow automation while keeping strategy and quality human-led."
-      features={["Content ideation and research support","Prompt workflows for faster execution","Reporting and analytics automation","Customer journey optimization","AI-assisted ad copy and creative generation","Chatbot and automation workflows","Marketing efficiency audits"]}
-      cta="Use AI to save time, improve consistency, and scale smarter."
-    />
-  )
+  return <ServicePageLayout service={service} />
 }

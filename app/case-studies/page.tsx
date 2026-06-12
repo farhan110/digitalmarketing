@@ -1,49 +1,91 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Eye } from '@/components/StatCounter'
-import { MarsPlanetSmall } from '@/components/MarsPlanet'
-export const metadata: Metadata = { title:'Case Studies | Mars', description:'See how Mars approaches real marketing problems with strategy, creative, paid media, content, and measurable execution.' }
-export default function CaseStudies() {
-  return (<>
-    <div className="pg-hero"><div className="contain grid lg:grid-cols-[1fr_200px] gap-8 items-center">
-      <div><Eye text="Case Studies" /><h1 className="h-sec font-grotesk mb-4">Real Strategy. Real Execution. <span className="grad">Real Results.</span></h1>
-      <p className="lead">A good case study shows the problem, the strategy, the execution, and the outcome. Below are examples of how we approach marketing problems.</p></div>
-      <div className="hidden lg:flex justify-end opacity-80"><MarsPlanetSmall size={140} /></div>
-    </div></div>
-    <div className="sec"><div className="contain">
-      <div className="glass !p-0 overflow-hidden mb-6">
-        <div className="px-5 py-4 md:px-8 md:py-6 border-b border-white/[0.08] flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div>
-            <p className="eye !mb-2">Featured Case Study</p>
-            <h2 className="font-grotesk text-[20px] md:text-[24px] font-bold">Local Brand Visibility & <span className="grad">Lead Growth</span></h2>
-          </div>
-          <span className="text-[10px] font-medium tracking-[2px] uppercase px-3 py-1.5 rounded-full border border-m-or/30 bg-m-or/10 text-m-or self-start">Multi-Channel</span>
-        </div>
-        <div className="px-5 py-5 md:px-8 md:py-8 grid lg:grid-cols-2 gap-8">
-          <div className="space-y-5 text-[14px] text-m-mu leading-[1.8] font-light">
-            <div><h3 className="font-grotesk text-[11px] font-semibold tracking-[2px] uppercase grad mb-2">Challenge</h3><p>The brand had a weak online presence, inconsistent content, and no clear lead-generation system. They were losing customers to competitors with stronger digital presence.</p></div>
-            <div><h3 className="font-grotesk text-[11px] font-semibold tracking-[2px] uppercase grad mb-2">Strategy</h3><p>We rebuilt the messaging, improved the website content, launched a focused content plan, and supported the offer with Meta and Google campaigns.</p></div>
-            <div><h3 className="font-grotesk text-[11px] font-semibold tracking-[2px] uppercase grad mb-2">Execution</h3>
-              <ul className="feat-list !mt-2">{['Clarified the offer and rewrote the homepage copy','Mapped keywords for service pages and blog topics','Built ad creatives and landing page messaging','Used social content to build trust and retarget visitors','Set up conversion tracking and monthly reporting'].map((f,i) => <li key={i}>{f}</li>)}</ul>
+import { PageHero } from '@/components/PageHero'
+import { Reveal } from '@/components/Reveal'
+import { Icon } from '@/components/Icons'
+import { CTASection } from '@/components/CTASection'
+
+export const metadata: Metadata = {
+  title: 'Case Studies | Digital Marketing Results — Mars Lucknow',
+  description: 'How Mars rebuilds messaging, content, and campaigns to grow visibility and leads. Problem → strategy → execution → outcome, documented clearly.',
+  alternates: { canonical: '/case-studies' },
+}
+
+const execution = [
+  'Clarified the offer and rewrote the homepage copy',
+  'Mapped keywords for service pages and blog topics',
+  'Built ad creatives and landing page messaging',
+  'Used social content to build trust and retarget visitors',
+]
+
+const results = [
+  { t: 'Improved visibility across search and social channels', i: 'search' },
+  { t: 'Better engagement from qualified audiences', i: 'spark' },
+  { t: 'More consistent inquiries from the right visitors', i: 'phone' },
+  { t: 'A stronger brand presence with clearer messaging', i: 'rocket' },
+]
+
+export default function CaseStudiesPage() {
+  return (
+    <>
+      <PageHero
+        chip="Case Studies"
+        title="Problem. Strategy. Execution. Outcome."
+        intro="A good case study shows the full journey — not just a screenshot. Here is how we approach growth for the brands we work with."
+      />
+
+      <section className="mx-auto max-w-5xl px-5 py-10">
+        <Reveal>
+          <article className="glass overflow-hidden">
+            <div className="border-b border-white/10 bg-gradient-to-r from-mars-500/10 via-transparent to-nebula-500/10 p-8 md:p-10">
+              <span className="chip">Featured case study</span>
+              <h2 className="mt-4 font-grotesk text-2xl font-bold md:text-3xl">Local Brand Visibility and Lead Growth</h2>
             </div>
-          </div>
-          <div>
-            <h3 className="font-grotesk text-[11px] font-semibold tracking-[2px] uppercase grad3 mb-4">Outcomes</h3>
-            <div className="grid-2 gap-3 mb-5">{[
-              { v:'Improved', l:'Search & Social Visibility' },
-              { v:'Better', l:'Qualified Engagement' },
-              { v:'More', l:'Consistent Inquiries' },
-              { v:'Stronger', l:'Brand Presence' },
-            ].map(m => (<div key={m.l} className="glass !p-4 text-center"><p className="font-grotesk text-[20px] font-bold grad3 mb-1">{m.v}</p><p className="text-[9px] text-m-mu uppercase tracking-wider">{m.l}</p></div>))}</div>
-            <div className="glass !rounded-xl relative overflow-hidden" style={{ background:'linear-gradient(135deg,rgba(16,185,129,0.06),rgba(6,182,212,0.04))', borderColor:'rgba(16,185,129,0.2)' }}>
-              <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background:'linear-gradient(180deg,#10b981,#06b6d4)' }} />
-              <p className="text-[13px] text-[#a7f3d0] leading-[1.7] pl-3">The brand went from inconsistent posting and zero inbound leads to a recognizable local presence with a steady stream of qualified inquiries from the right audience.</p>
+            <div className="grid gap-8 p-8 md:grid-cols-2 md:p-10">
+              <div>
+                <h3 className="font-grotesk text-lg font-semibold text-mars-300">The challenge</h3>
+                <p className="mt-3 leading-relaxed text-white/70">
+                  The brand had a weak online presence, inconsistent content, and no clear lead-generation system.
+                </p>
+                <h3 className="mt-8 font-grotesk text-lg font-semibold text-nebula-400">The strategy</h3>
+                <p className="mt-3 leading-relaxed text-white/70">
+                  We rebuilt the messaging, improved the website content, launched a focused content plan, and supported the offer with Meta and Google campaigns.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-grotesk text-lg font-semibold text-ion-300">The execution</h3>
+                <ul className="mt-3 space-y-3">
+                  {execution.map((e) => (
+                    <li key={e} className="flex items-start gap-3 text-white/75">
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ion-400/15 text-ion-300"><Icon name="check" className="h-3 w-3" /></span>
+                      {e}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+            <div className="border-t border-white/10 p-8 md:p-10">
+              <h3 className="font-grotesk text-lg font-semibold">The outcome</h3>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {results.map((r) => (
+                  <div key={r.t} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[.03] p-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mars-500/15 text-mars-400"><Icon name={r.i} className="h-5 w-5" /></span>
+                    <p className="text-sm font-medium text-white/80">{r.t}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+        </Reveal>
+        <Reveal delay={150}>
+          <div className="mt-12 text-center">
+            <p className="text-lg text-white/70">Want results like this? Let us build your growth system.</p>
+            <Link href="/contact" className="btn-primary mt-6">Book a Free Strategy Call</Link>
           </div>
-        </div>
-      </div>
-      <p className="text-center text-[12px] text-m-dm mt-8">More case studies coming soon as we complete ongoing campaigns. Want to be our next success story?</p>
-    </div></div>
-    <div className="cta-sec"><div className="cta-glow" /><h2 className="h-sec font-grotesk mb-3 relative">Want results <span className="grad">like this?</span></h2><p className="text-[14px] text-m-mu max-w-md mx-auto mb-7 leading-relaxed font-light relative">Let us build your growth system.</p><Link href="/contact" className="btn-cta relative">Book a Free Strategy Call</Link></div>
-  </>)
+        </Reveal>
+      </section>
+
+      <CTASection />
+    </>
+  )
 }

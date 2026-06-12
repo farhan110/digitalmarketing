@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import { ServicePageLayout } from '@/components/ServicePageLayout'
-export const metadata: Metadata = { title:'Social Media Marketing in Lucknow | Mars', description:'Build brand trust and engagement with social media strategy, content planning, design, reels, and account management.' }
+import { SERVICES } from '@/lib/site'
+
+const service = SERVICES.find((s) => s.slug === 'social-media')!
+
+export const metadata: Metadata = {
+  title: "Social Media Management | Instagram & Facebook Growth",
+  description: "Social media management in Lucknow: monthly content planning, Reels direction, captions, hashtags, creative templates, and community management that builds a recognizable brand.",
+  keywords: service.keywords,
+  alternates: { canonical: '/social-media' },
+  openGraph: { title: "Social Media Management | Instagram & Facebook Growth", description: "Social media management in Lucknow: monthly content planning, Reels direction, captions, hashtags, creative templates, and community management that builds a recognizable brand." },
+}
+
 export default function Page() {
-  return (
-    <ServicePageLayout
-      eyebrow="Social Media"
-      title="Social Media Marketing in"
-      titleHighlight="Lucknow"
-      description="Social media should do more than fill a feed. It should make your brand recognizable, trustworthy, and easy to remember. We create content plans that balance education, proof, promotion, and personality."
-      features={["Monthly content planning and calendar","Reels and short-form video direction","Caption writing and hashtag strategy","Creative templates and brand consistency","Community management and engagement","Performance reporting and analytics","Profile optimization and growth strategy"]}
-      cta="Turn your social media presence into a real growth asset."
-    />
-  )
+  return <ServicePageLayout service={service} />
 }
