@@ -3,6 +3,7 @@ import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { Starfield } from '@/components/Starfield'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { SITE } from '@/lib/site'
 
 import '@fontsource/space-grotesk/400.css'
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="relative z-[2]">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )

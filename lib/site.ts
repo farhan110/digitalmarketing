@@ -4,8 +4,9 @@ export const SITE = {
   title: 'Digital Marketing Agency in Lucknow | Mars',
   description:
     'Mars is a digital marketing company in Lucknow offering SEO services, Meta Ads, Google Ads, social media management, content marketing, email marketing, and AI marketing automation.',
-  phone: '+91-00000-00000',
-  email: 'hello@digitalmarketinginlucknow.in',
+  phone: '+91 70071 89274',
+  whatsapp: '917007189274',
+  email: 'hello@marsagency.in',
   locality: 'Lucknow',
   region: 'Uttar Pradesh',
 }

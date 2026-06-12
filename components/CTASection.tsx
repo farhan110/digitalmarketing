@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 import { Reveal } from './Reveal'
 
 export function CTASection({ title = 'Ready to launch your growth?', text = 'Tell us what you want to achieve. We will reply with a practical plan, clear next steps, and honest feedback about what will work best for your business.' }: { title?: string; text?: string }) {
@@ -11,8 +12,13 @@ export function CTASection({ title = 'Ready to launch your growth?', text = 'Tel
           <p className="mx-auto mt-4 max-w-2xl text-white/70">{text}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">Book a Free Strategy Call</Link>
+            <a href={`https://wa.me/${SITE.whatsapp}?text=Hi%2C+I+want+to+grow+my+business+with+Mars`} target="_blank" rel="noopener noreferrer" className="btn-ghost !border-[#25D366]/40 hover:!bg-[#25D366]/10">WhatsApp Us</a>
             <Link href="/contact" className="btn-ghost">Request a Free Audit</Link>
-            <Link href="/case-studies" className="btn-ghost">View Case Studies</Link>
+          </div>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-white/55">
+            <a href={`tel:+${SITE.whatsapp}`} className="transition hover:text-mars-300">📞 {SITE.phone}</a>
+            <a href={`mailto:${SITE.email}`} className="transition hover:text-mars-300">✉️ {SITE.email}</a>
+            <span>📍 Lucknow, Uttar Pradesh, India</span>
           </div>
         </div>
       </Reveal>

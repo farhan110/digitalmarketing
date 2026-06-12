@@ -35,9 +35,15 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-grotesk text-sm font-semibold uppercase tracking-widest text-mars-300">Start your growth plan</h3>
-          <p className="mt-4 text-sm text-white/60">Book a free strategy call or request a free audit. We reply with a practical plan.</p>
-          <Link href="/contact" className="btn-primary mt-5 text-sm">Request a Free Audit</Link>
+          <h3 className="font-grotesk text-sm font-semibold uppercase tracking-widest text-mars-300">Contact</h3>
+          <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+            <li><a href={`tel:+${SITE.whatsapp}`} className="transition hover:text-mars-300">{SITE.phone}</a></li>
+            <li><a href={`mailto:${SITE.email}`} className="transition hover:text-mars-300">{SITE.email}</a></li>
+            <li>Lucknow, Uttar Pradesh, India</li>
+            <li>Mon–Sat · 10AM–7PM IST</li>
+          </ul>
+          <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#25D366]/35 bg-[#25D366]/10 px-4 py-2 text-sm font-medium text-[#25D366] transition hover:bg-[#25D366]/20">WhatsApp Us</a>
+          <div><Link href="/contact" className="btn-primary mt-5 text-sm">Request a Free Audit</Link></div>
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-white/45">
