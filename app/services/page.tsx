@@ -7,8 +7,8 @@ import { CTASection } from '@/components/CTASection'
 import { SERVICES } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Digital Marketing Services in Lucknow | SEO, Ads, Social, AI',
-  description: 'Complete growth systems: SEO, Meta Ads, Google Ads, social media strategy, content writing, email marketing, and AI-assisted workflows — connected for discovery, trust, and conversion.',
+  title: 'Digital Marketing Services | SEO, Google Ads, Meta Ads, Web & More',
+  description: 'Complete growth systems: SEO, Google Ads, Meta Ads, Social Media Marketing, Website Development, Photography & Video Production, and eCommerce marketing — connected for discovery, trust, and conversion.',
   alternates: { canonical: '/services' },
 }
 
@@ -18,7 +18,7 @@ export default function ServicesPage() {
       <PageHero
         chip="Our Services"
         title="Complete growth systems, not random campaigns"
-        intro="We do not sell random posts or disconnected campaigns. We design complete growth systems that connect discovery, trust, conversion, and repeat business."
+        intro="We don't sell random posts or disconnected campaigns. We design complete growth systems that connect discovery, trust, conversion, and repeat business."
       />
 
       <section className="mx-auto max-w-7xl px-5 py-14">
@@ -32,7 +32,7 @@ export default function ServicesPage() {
                 <h2 className="mt-5 font-grotesk text-xl font-semibold">{s.name}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-white/60">{s.short}</p>
                 <ul className="mt-4 space-y-1.5 text-sm text-white/50">
-                  {s.features.slice(0, 3).map((f) => <li key={f}>• {f}</li>)}
+                  {s.cards.slice(0, 3).map((c) => <li key={c.title}>• {c.title}</li>)}
                 </ul>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-mars-300 transition-all group-hover:gap-3">Explore service →</span>
               </Link>

@@ -1,25 +1,42 @@
 import Link from 'next/link'
 import type { Service } from '@/lib/site'
-import { SERVICES } from '@/lib/site'
+import { SERVICES, SITE } from '@/lib/site'
 import { Reveal } from './Reveal'
 import { Icon } from './Icons'
 import { CTASection } from './CTASection'
 
 export function ServicePageLayout({ service }: { service: Service }) {
   const others = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3)
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    serviceType: service.name,
+    description: service.description,
+    provider: { '@type': 'Organization', name: 'MARS DIGITAL MARKETING', url: SITE.url },
+    areaServed: ['Lucknow', 'India', 'Worldwide'],
+    url: `${SITE.url}/${service.slug}`,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.name} services`,
+      itemListElement: service.cards.map((c) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: c.title, description: c.desc } })),
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+
       <section className="relative mx-auto max-w-7xl px-5 pb-12 pt-36 md:pt-44">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <span className="chip">{service.tagline}</span>
-            <h1 className="mt-6 font-grotesk text-4xl font-bold leading-tight md:text-5xl">
-              {service.name} <span className="text-gradient">that performs</span>
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-white/70">{service.description}</p>
+            <span className="chip">{service.name}</span>
+            <h1 className="mt-6 font-grotesk text-4xl font-bold leading-tight md:text-5xl">{service.h1}</h1>
+            <p className="mt-4 text-lg font-medium text-gradient-mars">{service.subtitle}</p>
+            <p className="mt-5 text-lg leading-relaxed text-white/70">{service.description}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/contact" className="btn-primary">Book a Free Strategy Call</Link>
-              <Link href="/case-studies" className="btn-ghost">View Case Studies</Link>
+              <Link href="/our-work" className="btn-ghost">See Our Work</Link>
             </div>
           </Reveal>
           <Reveal delay={150}>
@@ -33,15 +50,16 @@ export function ServicePageLayout({ service }: { service: Service }) {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-14">
-        <Reveal><h2 className="text-center font-grotesk text-3xl font-bold md:text-4xl">What&apos;s included</h2></Reveal>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {service.features.map((f, i) => (
-            <Reveal key={f} delay={i * 80}>
-              <div className="glass glass-hover flex items-start gap-4 p-6">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mars-500/15 text-mars-400">
-                  <Icon name="check" className="h-4 w-4" />
+        <Reveal><h2 className="text-center font-grotesk text-3xl font-bold md:text-4xl">What we provide</h2></Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {service.cards.map((c, i) => (
+            <Reveal key={c.title} delay={i * 80}>
+              <div className="glass glass-hover h-full p-7">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-mars-500/15 text-mars-400">
+                  <Icon name="spark" className="h-5 w-5" />
                 </span>
-                <p className="font-medium text-white/85">{f}</p>
+                <h2 className="mt-4 font-grotesk text-xl font-semibold">{c.title}</h2>
+                <p className="mt-2.5 text-sm leading-relaxed text-white/65">{c.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -57,7 +75,7 @@ export function ServicePageLayout({ service }: { service: Service }) {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-14">
-        <Reveal><h2 className="text-center font-grotesk text-2xl font-bold">Pairs well with</h2></Reveal>
+        <Reveal><h2 className="text-center font-grotesk text-2xl font-bold">Explore more services</h2></Reveal>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {others.map((s, i) => (
             <Reveal key={s.slug} delay={i * 90}>

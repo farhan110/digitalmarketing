@@ -2,7 +2,10 @@ import Link from 'next/link'
 import { SITE } from '@/lib/site'
 import { Reveal } from './Reveal'
 
-export function CTASection({ title = 'Ready to launch your growth?', text = 'Tell us what you want to achieve. We will reply with a practical plan, clear next steps, and honest feedback about what will work best for your business.' }: { title?: string; text?: string }) {
+export function CTASection({
+  title = 'Ready to grow your business?',
+  text = 'Tell us what you want to achieve. We will reply with a practical plan, clear next steps, and honest feedback about what will work best for your business.',
+}: { title?: string; text?: string }) {
   return (
     <section className="mx-auto max-w-7xl px-5 py-20">
       <Reveal>
@@ -17,7 +20,6 @@ export function CTASection({ title = 'Ready to launch your growth?', text = 'Tel
           </div>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-white/55">
             <a href={`tel:+${SITE.whatsapp}`} className="transition hover:text-mars-300">📞 {SITE.phone}</a>
-            <a href={`mailto:${SITE.email}`} className="transition hover:text-mars-300">✉️ {SITE.email}</a>
             <span>📍 Lucknow, Uttar Pradesh, India</span>
           </div>
         </div>

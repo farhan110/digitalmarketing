@@ -5,11 +5,11 @@ import { SERVICES } from '@/lib/site'
 const service = SERVICES.find((s) => s.slug === 'social-media')!
 
 export const metadata: Metadata = {
-  title: "Social Media Management | Instagram & Facebook Growth",
-  description: "Social media management in Lucknow: monthly content planning, Reels direction, captions, hashtags, creative templates, and community management that builds a recognizable brand.",
+  title: "Social Media Marketing Agency | Instagram & Facebook Growth",
+  description: "Social media marketing that makes your brand recognizable and trustworthy: content strategy, Reels, creative design, and community management.",
   keywords: service.keywords,
   alternates: { canonical: '/social-media' },
-  openGraph: { title: "Social Media Management | Instagram & Facebook Growth", description: "Social media management in Lucknow: monthly content planning, Reels direction, captions, hashtags, creative templates, and community management that builds a recognizable brand." },
+  openGraph: { title: "Social Media Marketing Agency | Instagram & Facebook Growth", description: "Social media marketing that makes your brand recognizable and trustworthy: content strategy, Reels, creative design, and community management." },
 }
 
 export default function Page() {

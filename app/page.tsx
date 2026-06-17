@@ -5,16 +5,16 @@ import { Reveal } from '@/components/Reveal'
 import { StatCounter } from '@/components/StatCounter'
 import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
-import { SERVICES } from '@/lib/site'
+import { SERVICES, CASE_STUDIES, FAQS } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Digital Marketing Agency in Lucknow | SEO, Ads & AI Marketing — Mars',
+  title: 'Digital Marketing Agency in Lucknow | MARS DIGITAL MARKETING',
   description:
-    'Mars is your growth partner for SEO, Meta Ads, Google Ads, social media, content, email, and AI marketing. Digital marketing that brings traffic, leads, and growth for brands in Lucknow and beyond.',
+    'MARS DIGITAL MARKETING is a results-driven digital marketing agency in Lucknow helping businesses grow online visibility, generate qualified leads, and increase revenue through SEO, Google Ads, Meta Ads, Social Media, Website Development, Photography & Video, and eCommerce.',
   alternates: { canonical: '/' },
 }
 
-const industries = ['Retail', 'Food & Beverage', 'Lifestyle', 'Education', 'Service Businesses', 'Local Brands', 'E-commerce', 'Healthcare']
+const industries = ['Retail', 'Food & Beverage', 'Lifestyle', 'Education', 'B2B & Manufacturing', 'eCommerce', 'Technology', 'Service Businesses']
 
 const steps = [
   { n: '01', title: 'Discover', text: 'We understand your market, audience, and offer — then map the channels and keywords that matter.', icon: 'search' },
@@ -22,17 +22,10 @@ const steps = [
   { n: '03', title: 'Grow', text: 'We measure, report, and improve based on data, so growth compounds month after month.', icon: 'chart' },
 ]
 
-const faqs = [
-  { q: 'Which service should I start with?', a: 'It depends on your goal. If people already search for your service, SEO or Google Ads capture that demand. If you need fast leads, Meta Ads usually work first. Tell us your goal and we will recommend the best starting point.' },
-  { q: 'How long does SEO take to show results?', a: 'SEO typically builds momentum over 3–6 months. Local SEO and Google Business Profile improvements can show movement sooner. We share clear monthly reports so you always know what is improving.' },
-  { q: 'Do you run ads for local businesses in Lucknow?', a: 'Yes. We run Meta Ads and Google Ads for local businesses across Lucknow — restaurants, retail, education, clinics, and services — with targeting built around your local audience.' },
-  { q: 'Can you manage content, design, and reporting too?', a: 'Yes. Strategy, content, creatives, ads, and reporting are handled under one roof, so you do not have to manage multiple freelancers or agencies.' },
-]
-
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 }
 
 export default function HomePage() {
@@ -49,26 +42,25 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={120}>
               <h1 className="mt-6 font-grotesk text-4xl font-bold leading-[1.1] md:text-6xl">
-                Digital marketing that brings <span className="text-gradient">traffic, leads, and growth</span>
+                Digital Marketing Agency in <span className="text-gradient">Lucknow</span>
               </h1>
             </Reveal>
             <Reveal delay={240}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-                Your growth partner for SEO, ads, content, and social media. From SEO and paid ads to social media and content,
-                Mars builds practical growth systems that help your business get found, get clicked, and get chosen — in Lucknow and across India.
+                MARS DIGITAL MARKETING is a results-driven digital marketing agency in Lucknow helping businesses grow their online visibility, generate qualified leads, and increase revenue through data-backed marketing strategies. We specialize in SEO, Google Ads, Meta Ads, Social Media Marketing, Website Development, Photography &amp; Video Production, and eCommerce marketing solutions designed to help brands stand out in today&apos;s competitive digital landscape.
               </p>
             </Reveal>
             <Reveal delay={360}>
               <div className="mt-9 flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary">Book a Free Strategy Call</Link>
                 <Link href="/contact" className="btn-ghost">Request a Free Audit</Link>
-                <Link href="/case-studies" className="btn-ghost">See Case Studies</Link>
+                <Link href="/our-work" className="btn-ghost">See Our Work</Link>
               </div>
             </Reveal>
             <Reveal delay={460}>
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6">
                 <StatCounter value={4} suffix="+" label="Years of experience" />
-                <StatCounter value={7} label="Growth channels" />
+                <StatCounter value={7} label="Growth services" />
                 <StatCounter value={100} suffix="%" label="Performance focused" />
               </div>
             </Reveal>
@@ -99,17 +91,17 @@ export default function HomePage() {
             One team. <span className="text-gradient">Every growth channel.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            We do not sell random posts or disconnected campaigns. We design complete growth systems that connect discovery, trust, conversion, and repeat business.
+            We design complete growth systems that connect discovery, trust, conversion, and repeat business — across every channel your brand needs.
           </p>
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 80}>
+            <Reveal key={s.slug} delay={i * 70}>
               <Link href={`/${s.slug}`} className="glass glass-hover group block h-full p-7">
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-mars-500/20 to-nebula-500/15 text-mars-400 transition-transform duration-300 group-hover:scale-110">
                   <Icon name={s.icon} />
                 </span>
-                <h3 className="mt-5 font-grotesk text-xl font-semibold">{s.name}</h3>
+                <h2 className="mt-5 font-grotesk text-xl font-semibold">{s.name}</h2>
                 <p className="mt-2.5 text-sm leading-relaxed text-white/60">{s.short}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-mars-300 transition-all group-hover:gap-3">
                   Explore <span aria-hidden>→</span>
@@ -120,20 +112,51 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ABOUT / RESULTS BLOCK */}
+      {/* OUR WORK / CASE STUDIES */}
+      <section className="mx-auto max-w-7xl px-5 py-16">
+        <Reveal>
+          <span className="chip mx-auto block w-fit">Our Work</span>
+          <h2 className="mt-5 text-center font-grotesk text-3xl font-bold md:text-5xl">
+            Real brands. <span className="text-gradient">Real results.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+            A look at how we&apos;ve helped businesses grow through search, ads, and conversion — click any project to read the full case study.
+          </p>
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {CASE_STUDIES.map((c, i) => (
+            <Reveal key={c.slug} delay={i * 90}>
+              <Link href={`/our-work/${c.slug}`} className="glass glass-hover group relative block h-full overflow-hidden p-8">
+                <div className={`pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${c.accent} blur-2xl opacity-60`} />
+                <span className="text-xs font-semibold uppercase tracking-widest text-mars-300">{c.category}</span>
+                <h3 className="mt-3 font-grotesk text-2xl font-bold">{c.client}</h3>
+                <p className="mt-1 text-sm font-medium text-nebula-400">{c.metric}</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/65">{c.cardDesc}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-all group-hover:gap-3">
+                  Read case study <span aria-hidden>→</span>
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={150}>
+          <div className="mt-10 text-center"><Link href="/our-work" className="btn-ghost">View all work →</Link></div>
+        </Reveal>
+      </section>
+
+      {/* WHY US */}
       <section className="mx-auto max-w-7xl px-5 py-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <span className="chip">Why Mars</span>
+            <span className="chip">Why MARS</span>
             <h2 className="mt-5 font-grotesk text-3xl font-bold md:text-4xl">
-              Built for owners who want marketing that <span className="text-gradient-mars">actually performs</span>
+              Marketing that <span className="text-gradient-mars">actually performs</span>
             </h2>
             <p className="mt-5 leading-relaxed text-white/70">
-              With 4+ years of experience and cross-industry expertise, we combine strategy, design, content, paid media, and technical
-              execution — so you do not have to manage multiple freelancers or agencies.
+              We combine strategy, design, content, paid media, and technical execution under one roof — so you don&apos;t have to manage multiple freelancers or agencies. We understand the market, build the right offer, launch the right campaign, and improve based on data.
             </p>
             <ul className="mt-7 space-y-3.5">
-              {['Strategy-first planning', 'Clear reporting and communication', 'Fast delivery with practical execution', 'SEO, ads, content, and website support under one roof'].map((v) => (
+              {['Strategy-first planning', 'Clear weekly updates and monthly reporting', 'A dedicated specialist as your point of contact', 'SEO, ads, content, web, and creative under one roof'].map((v) => (
                 <li key={v} className="flex items-start gap-3 text-white/80">
                   <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-mars-500/20 text-mars-400"><Icon name="check" className="h-3 w-3" /></span>
                   {v}
@@ -181,41 +204,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PROOF */}
-      <section className="mx-auto max-w-7xl px-5 py-10">
-        <Reveal>
-          <div className="glass relative overflow-hidden p-8 md:p-12">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-nebula-500/15 blur-3xl" />
-            <div className="grid items-center gap-8 md:grid-cols-[1.2fr,1fr]">
-              <div>
-                <span className="chip">Proof of work</span>
-                <h2 className="mt-4 font-grotesk text-3xl font-bold">Real accounts. Real strategy. Real outcomes.</h2>
-                <p className="mt-4 text-white/65">
-                  Managed Instagram accounts, ad strategy snapshots, and case study highlights — see how we build visibility and lead systems for brands like yours.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <Link href="/portfolio" className="btn-primary text-sm">View Portfolio</Link>
-                  <Link href="/case-studies" className="btn-ghost text-sm">Read Case Studies</Link>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3" aria-hidden="true">
-                {['from-mars-500/30 to-mars-600/10', 'from-nebula-500/30 to-nebula-500/5', 'from-ion-400/25 to-ion-400/5', 'from-nebula-500/20 to-mars-500/10', 'from-ion-400/20 to-nebula-500/10', 'from-mars-500/25 to-ion-400/5'].map((g, i) => (
-                  <div key={i} className={`aspect-square rounded-xl border border-white/10 bg-gradient-to-br ${g}`} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-5 py-24">
+      <section id="faq" className="mx-auto max-w-3xl px-5 py-24">
         <Reveal>
-          <h2 className="text-center font-grotesk text-3xl font-bold md:text-4xl">Frequently asked questions</h2>
+          <h2 className="text-center font-grotesk text-3xl font-bold md:text-4xl">Frequently Asked Questions</h2>
         </Reveal>
         <div className="mt-10 space-y-4">
-          {faqs.map((f, i) => (
-            <Reveal key={f.q} delay={i * 80}>
+          {FAQS.map((f, i) => (
+            <Reveal key={f.q} delay={i * 60}>
               <details className="faq">
                 <summary>{f.q}</summary>
                 <p>{f.a}</p>

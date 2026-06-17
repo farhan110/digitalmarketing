@@ -6,8 +6,8 @@ import { ContactForm } from '@/components/ContactForm'
 import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Contact Mars | Book a Free Strategy Call — Lucknow',
-  description: 'Tell us what you want to achieve. We reply with a practical plan, clear next steps, and honest feedback about what will work best for your business in Lucknow.',
+  title: 'Contact MARS DIGITAL MARKETING | Book a Free Strategy Call',
+  description: 'Tell us what you want to achieve. We reply with a practical plan, clear next steps, and honest feedback about what will work best for your business.',
   alternates: { canonical: '/contact' },
 }
 
@@ -44,10 +44,9 @@ export default function ContactPage() {
             <Reveal delay={400}>
               <div className="glass p-6">
                 <h2 className="font-grotesk font-semibold text-mars-300">Direct contact</h2>
-                <p className="mt-2 text-sm text-white/65">Email: <a href={`mailto:${SITE.email}`} className="text-white underline-offset-4 hover:underline">{SITE.email}</a></p>
-                <p className="mt-1 text-sm text-white/65">Phone: <a href={`tel:+${SITE.whatsapp}`} className="text-white underline-offset-4 hover:underline">{SITE.phone}</a></p>
+                <p className="mt-2 text-sm text-white/65">Phone: <a href={`tel:+${SITE.whatsapp}`} className="text-white underline-offset-4 hover:underline">{SITE.phone}</a></p>
                 <a href={`https://wa.me/${SITE.whatsapp}?text=Hi%2C+I+want+to+grow+my+business+with+Mars`} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#25D366]/35 bg-[#25D366]/10 px-4 py-2 text-sm font-medium text-[#25D366] transition hover:bg-[#25D366]/20">WhatsApp Us Directly</a>
-                <p className="mt-3 text-xs text-white/40">Based in Lucknow · Working with brands across India</p>
+                <p className="mt-3 text-xs text-white/40">Based in Lucknow · Working with brands across India and worldwide</p>
               </div>
             </Reveal>
           </div>

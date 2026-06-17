@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next'
-import { SERVICES, SITE } from '@/lib/site'
+import { SERVICES, CASE_STUDIES, SITE } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
-  const staticPages = ['', '/about', '/services', '/case-studies', '/portfolio', '/blog', '/faq', '/contact']
+  const staticPages = ['', '/about', '/services', '/our-work', '/contact']
   return [
     ...staticPages.map((p) => ({
       url: `${SITE.url}${p}`,
@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
+    })),
+    ...CASE_STUDIES.map((c) => ({
+      url: `${SITE.url}/our-work/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
   ]
 }

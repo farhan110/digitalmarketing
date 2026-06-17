@@ -6,8 +6,8 @@ import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
 
 export const metadata: Metadata = {
-  title: 'About Mars | Digital Marketing Agency in Lucknow',
-  description: 'Mars is built for business owners who want marketing that actually performs. Strategy, design, content, paid media, and technical execution — under one roof in Lucknow.',
+  title: 'About MARS DIGITAL MARKETING | Digital Marketing Agency',
+  description: 'MARS DIGITAL MARKETING is built for business owners who want marketing that actually performs — strategy, design, content, paid media, and technical execution under one roof.',
   alternates: { canonical: '/about' },
 }
 
@@ -15,7 +15,7 @@ const why = [
   { t: 'Strategy-first planning', d: 'Every campaign starts with market understanding, not guesswork.', i: 'target' },
   { t: 'Clear reporting and communication', d: 'You always know what is running, what it costs, and what it returns.', i: 'chart' },
   { t: 'Fast delivery with practical execution', d: 'We move quickly and focus on what actually moves numbers.', i: 'rocket' },
-  { t: 'Everything under one roof', d: 'SEO, ads, content, and website support — no juggling freelancers.', i: 'spark' },
+  { t: 'Everything under one roof', d: 'SEO, ads, content, web, and creative support — no juggling freelancers.', i: 'spark' },
 ]
 
 const values = [
@@ -29,9 +29,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        chip="About Mars"
+        chip="About MARS DIGITAL MARKETING"
         title="Marketing that actually performs"
-        intro="Mars is built for business owners who want marketing that actually performs. We combine strategy, design, content, paid media, and technical execution so you do not have to manage multiple freelancers or agencies."
+        intro="MARS DIGITAL MARKETING is built for business owners who want marketing that actually performs. We combine strategy, design, content, paid media, and technical execution so you don't have to manage multiple freelancers or agencies."
       />
 
       <section className="mx-auto max-w-7xl px-5 py-14">
@@ -79,7 +79,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-3xl px-5 py-14 text-center">
         <Reveal>
           <p className="text-xl leading-relaxed text-white/80">
-            If your business needs more visibility, more leads, and more trust online, <span className="text-gradient font-grotesk font-bold">Mars is ready to build the system behind it.</span>
+            If your business needs more visibility, more leads, and more trust online, <span className="text-gradient font-grotesk font-bold">MARS DIGITAL MARKETING is ready to build the system behind it.</span>
           </p>
           <Link href="/contact" className="btn-primary mt-8">Start Your Growth Plan</Link>
         </Reveal>
