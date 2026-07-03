@@ -2,6 +2,12 @@
 import { useState, type FormEvent } from 'react'
 import { SERVICES } from '@/lib/site'
 
+// FormSubmit delivers inquiries to this inbox (no account/API key needed).
+// Submitting from the browser is FormSubmit's supported method.
+// The FIRST submission triggers a one-time "Activate" email to this address —
+// click Activate once and every future inquiry is delivered automatically.
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/zaheer.haider887@gmail.com'
+
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle')
   const [msg, setMsg] = useState('')
@@ -9,15 +15,31 @@ export function ContactForm() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus('sending')
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries())
+    const f = new FormData(e.currentTarget)
+    const payload = {
+      _subject: `New Enquiry from ${f.get('name') || 'Website'} — MARS DIGITAL MARKETING`,
+      _template: 'table',
+      _captcha: 'false',
+      Name: f.get('name'),
+      Email: f.get('email'),
+      Phone: f.get('phone') || '-',
+      Business: f.get('business') || '-',
+      Service: f.get('service') || '-',
+      Message: f.get('message'),
+    }
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      const json = await res.json()
-      setStatus(res.ok ? 'ok' : 'error')
-      setMsg(json.message || '')
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const json = await res.json().catch(() => ({} as Record<string, unknown>))
+      const ok = res.ok && String(json.success) !== 'false'
+      setStatus(ok ? 'ok' : 'error')
+      setMsg(ok ? '' : 'Something went wrong sending your message. Please try again or reach us on WhatsApp.')
     } catch {
       setStatus('error')
-      setMsg('Something went wrong. Please try again or email us directly.')
+      setMsg('Something went wrong sending your message. Please try again or reach us on WhatsApp.')
     }
   }
 
@@ -25,7 +47,7 @@ export function ContactForm() {
     return (
       <div className="glass p-10 text-center">
         <div className="font-grotesk text-2xl font-bold text-gradient-mars">Message received 🚀</div>
-        <p className="mt-3 text-white/70">{msg || 'We will be in touch with a practical plan and next steps.'}</p>
+        <p className="mt-3 text-white/70">Thanks! We&apos;ve got your details and will be in touch shortly with a practical plan and next steps.</p>
       </div>
     )
   }
