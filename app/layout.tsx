@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
@@ -38,21 +39,56 @@ const orgJsonLd = {
   '@type': 'ProfessionalService',
   '@id': `${SITE.url}/#organization`,
   name: 'MARS DIGITAL MARKETING',
+  alternateName: 'Mars Digital Marketing Lucknow',
   url: SITE.url,
   description: SITE.description,
-  areaServed: ['Lucknow', 'India', 'Worldwide'],
-  address: { '@type': 'PostalAddress', addressLocality: SITE.locality, addressRegion: SITE.region, addressCountry: 'IN' },
   telephone: SITE.phone,
   priceRange: '₹₹',
+  currenciesAccepted: 'INR',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE.locality,
+    addressRegion: SITE.region,
+    addressCountry: 'IN',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 26.8467, longitude: 80.9462 },
+  areaServed: [
+    { '@type': 'City', name: 'Lucknow' },
+    { '@type': 'Country', name: 'India' },
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '10:00',
+      closes: '19:00',
+    },
+  ],
   sameAs: [],
-  makesOffer: SERVICES.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })),
+  makesOffer: SERVICES.map((s) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s.name, url: `${SITE.url}/${s.slug}` },
+  })),
 }
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  url: SITE.url,
+  name: 'MARS DIGITAL MARKETING',
+  publisher: { '@id': `${SITE.url}/#organization` },
+  inLanguage: 'en-IN',
+}
+
+const GA_ID = 'G-LTK0BCEHKN'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="font-base">
       <body className="overflow-x-hidden bg-space-950 font-inter text-white antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
         <Starfield />
         <div className="bg-aurora" />
         <div className="bg-grid" />
@@ -60,6 +96,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="relative z-[2]">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
       </body>
     </html>
   )
