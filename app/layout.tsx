@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
+  verification: { google: 'rMNEZk_SRFNzIRWFJfGcynF5PehX2PCYuDWKMLxJTq0' },
   openGraph: {
     type: 'website', locale: 'en_IN', url: SITE.url, siteName: 'MARS DIGITAL MARKETING',
     title: SITE.title, description: SITE.description,
