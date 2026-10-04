@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Reveal } from '@/components/Reveal'
@@ -13,13 +15,8 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const study = CASE_STUDIES.find((c) => c.slug === params.slug)
   if (!study) return {}
-  const title = `${study.client} Case Study — ${study.title}`
-  return {
-    title,
-    description: study.cardDesc,
-    alternates: { canonical: `/our-work/${study.slug}` },
-    openGraph: { title, description: study.cardDesc },
-  }
+  const title = `${study.client} Digital Marketing Case Study`
+  return pageMetadata(title, study.cardDesc, `/our-work/${study.slug}`)
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
@@ -32,8 +29,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
     '@type': 'Article',
     headline: `${study.client} Case Study: ${study.title}`,
     description: study.cardDesc,
-    author: { '@type': 'Organization', name: 'MARS DIGITAL MARKETING', url: SITE.url },
-    publisher: { '@type': 'Organization', name: 'MARS DIGITAL MARKETING', url: SITE.url },
+    author: { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/our-work/${study.slug}`,
   }
 
@@ -42,6 +39,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <section className="relative mx-auto max-w-4xl px-5 pb-6 pt-36 md:pt-44">
+        <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Our Work', path: '/our-work' }, { name: study.client, path: `/our-work/${study.slug}` }]} />
         <Reveal>
           <Link href="/our-work" className="text-sm text-white/55 transition hover:text-mars-300">← Back to Our Work</Link>
           <span className="chip mt-6">{study.category}</span>

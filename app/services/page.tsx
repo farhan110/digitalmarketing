@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { PageHero } from '@/components/PageHero'
 import { Reveal } from '@/components/Reveal'
@@ -6,11 +6,11 @@ import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
 import { SERVICES } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Digital Marketing Services | SEO, Google Ads, Meta Ads, Web & More',
-  description: 'Complete growth systems: SEO, Google Ads, Meta Ads, Social Media Marketing, Website Development, Photography & Video Production, and eCommerce marketing — connected for discovery, trust, and conversion.',
-  alternates: { canonical: '/services' },
-}
+export const metadata = pageMetadata(
+  "Digital Marketing Services in Lucknow",
+  "Explore SEO, Google Ads, Meta Ads, social media, website development, photography, video production and eCommerce marketing services in Lucknow.",
+  "/services",
+)
 
 export default function ServicesPage() {
   return (

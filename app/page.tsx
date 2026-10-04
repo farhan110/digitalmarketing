@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import { MarsPlanet } from '@/components/MarsPlanet'
 import { Reveal } from '@/components/Reveal'
 import { StatCounter } from '@/components/StatCounter'
@@ -7,12 +7,11 @@ import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
 import { SERVICES, CASE_STUDIES, FAQS } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Digital Marketing Agency in Lucknow | MARS DIGITAL MARKETING',
-  description:
-    'MARS DIGITAL MARKETING is a results-driven digital marketing agency in Lucknow helping businesses grow online visibility, generate qualified leads, and increase revenue through SEO, Google Ads, Meta Ads, Social Media, Website Development, Photography & Video, and eCommerce.',
-  alternates: { canonical: '/' },
-}
+export const metadata = pageMetadata(
+  "Digital Marketing Agency in Lucknow",
+  "Grow your business with MARS DIGITAL MARKETING in Lucknow: SEO, Google Ads, Meta Ads, social media, websites, photography, video and eCommerce.",
+  "/",
+)
 
 const industries = ['Retail', 'Food & Beverage', 'Lifestyle', 'Education', 'B2B & Manufacturing', 'eCommerce', 'Technology', 'Service Businesses']
 

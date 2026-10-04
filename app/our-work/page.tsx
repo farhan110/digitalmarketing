@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { PageHero } from '@/components/PageHero'
 import { Reveal } from '@/components/Reveal'
 import { CTASection } from '@/components/CTASection'
 import { CASE_STUDIES } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Our Work | Digital Marketing Case Studies — MARS DIGITAL MARKETING',
-  description: 'Real case studies from MARS DIGITAL MARKETING — B2B lead generation, SEO that moves brands from Page 4 to Page 1, profitable Meta Ads scaling, and high-quality international Google Ads leads.',
-  alternates: { canonical: '/our-work' },
-}
+export const metadata = pageMetadata(
+  "Digital Marketing Case Studies",
+  "Explore MARS DIGITAL MARKETING case studies covering SEO, B2B leads, Google Ads, Meta Ads and eCommerce growth strategies.",
+  "/our-work",
+)
 
 export default function OurWorkPage() {
   return (

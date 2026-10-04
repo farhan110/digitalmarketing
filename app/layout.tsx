@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer'
 import { Starfield } from '@/components/Starfield'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { SITE, SERVICES } from '@/lib/site'
+import { pageMetadata } from '@/lib/seo'
 
 import '@fontsource/space-grotesk/400.css'
 import '@fontsource/space-grotesk/500.css'
@@ -18,8 +19,8 @@ import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 
 export const metadata: Metadata = {
+  ...pageMetadata('Digital Marketing Agency in Lucknow', SITE.description, '/'),
   metadataBase: new URL(SITE.url),
-  title: { default: SITE.title, template: '%s | MARS DIGITAL MARKETING' },
   description: SITE.description,
   keywords: [
     'digital marketing agency in Lucknow', 'SEO company in Lucknow', 'Google Ads agency',
@@ -28,11 +29,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
   verification: { google: 'rMNEZk_SRFNzIRWFJfGcynF5PehX2PCYuDWKMLxJTq0' },
-  openGraph: {
-    type: 'website', locale: 'en_IN', url: SITE.url, siteName: 'MARS DIGITAL MARKETING',
-    title: SITE.title, description: SITE.description,
-  },
-  twitter: { card: 'summary_large_image', title: SITE.title, description: SITE.description },
 }
 
 const orgJsonLd = {
@@ -52,7 +48,6 @@ const orgJsonLd = {
     addressRegion: SITE.region,
     addressCountry: 'IN',
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 26.8467, longitude: 80.9462 },
   areaServed: [
     { '@type': 'City', name: 'Lucknow' },
     { '@type': 'Country', name: 'India' },

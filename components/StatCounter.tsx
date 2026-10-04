@@ -2,14 +2,16 @@
 import { useEffect, useRef, useState } from 'react'
 
 export function StatCounter({ value, suffix = '', label }: { value: number; suffix?: string; label: string }) {
-  const [n, setN] = useState(0)
+  const [n, setN] = useState(value)
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return
       io.disconnect()
+      setN(0)
       const start = performance.now()
       const dur = 1600
       const tick = (now: number) => {

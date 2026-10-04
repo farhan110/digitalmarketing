@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
     h1: 'Search Engine Optimization – SEO Company in Lucknow',
     subtitle: 'Don’t just rank higher. Drive growth!',
     description:
-      'MARS DIGITAL MARKETING is the best SEO company in Lucknow. We combine on-page, off-page, and technical SEO expertise to make your website discoverable and drive targeted organic traffic. With every second seeing 100,000 Google searches – and 75% of users never scrolling past page one, ranking high is critical. Our data-driven SEO strategies help businesses climb search rankings and unlock sustainable growth online.',
+      'MARS DIGITAL MARKETING provides SEO services in Lucknow, combining on-page content, technical SEO, internal linking, and authority building. We improve the way search engines access and understand your website, then connect relevant searches to useful service pages. Our GEO/AEO work also helps make business information clear for AI-powered search and answer systems.',
     cards: [
       { title: 'On-Page SEO', desc: 'We optimize titles, meta tags, headings, content, and internal links so every page sends the right signals to search engines and answers exactly what your customers are searching for.' },
       { title: 'Off-Page SEO', desc: 'We build authority through high-quality backlinks, digital PR, and citations that tell Google your brand is trusted and worth ranking above the competition.' },
@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
     slug: 'google-ads',
     name: 'Google Ads',
     short: 'Capture demand from people already searching.',
-    h1: 'Google Ads Agency',
+    h1: 'Google Ads Agency in Lucknow',
     subtitle: 'Capture high-intent demand at the exact moment of search.',
     description:
       'Google Ads put your business in front of customers at the exact moment they’re searching for what you offer. We build and manage high-intent Search, Shopping, and remarketing campaigns engineered for qualified leads and measurable return on ad spend — not just clicks.',
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
     slug: 'meta-ads',
     name: 'Meta Ads',
     short: 'Leads and sales from Facebook & Instagram.',
-    h1: 'Meta Ads Agency',
+    h1: 'Meta Ads Agency in Lucknow',
     subtitle: 'Full-funnel Facebook & Instagram campaigns that scale profitably.',
     description:
       'Meta Ads work best when creative, targeting, offer, and landing page all pull in the same direction. We build full-funnel Facebook and Instagram campaigns — backed by scroll-stopping creative and UGC — that generate leads, drive sales, and scale profitably.',
@@ -85,7 +85,7 @@ export const SERVICES: Service[] = [
     slug: 'social-media',
     name: 'Social Media Marketing',
     short: 'Make your brand recognizable and easy to remember.',
-    h1: 'Social Media Marketing',
+    h1: 'Social Media Marketing in Lucknow',
     subtitle: 'Make your brand recognizable, trustworthy, and impossible to forget.',
     description:
       'Social media should do more than fill a feed — it should make your brand recognizable, trustworthy, and easy to remember. We create content systems that balance education, proof, promotion, and personality so your audience keeps coming back.',
@@ -103,7 +103,7 @@ export const SERVICES: Service[] = [
     slug: 'website-development',
     name: 'Website Development',
     short: 'Websites built to convert, not just to look good.',
-    h1: 'Website Development',
+    h1: 'Website Development in Lucknow',
     subtitle: 'Fast, mobile-first websites built to convert.',
     description:
       'Your website is your hardest-working salesperson. We design and develop fast, mobile-first, SEO-ready websites that load quickly, build trust, and turn visitors into customers — whether you need a business site, a landing page, or a full eCommerce store.',
@@ -121,7 +121,7 @@ export const SERVICES: Service[] = [
     slug: 'photography-video',
     name: 'Photography and Video Production',
     short: 'Visuals that make your brand impossible to scroll past.',
-    h1: 'Photography and Video Production',
+    h1: 'Photography and Video Production in Lucknow',
     subtitle: 'Visuals that make your brand impossible to scroll past.',
     description:
       'Great content starts with great visuals. We produce professional photography and video — from product shoots to brand films and short-form social content — that elevate your brand and perform across every platform.',
@@ -139,7 +139,7 @@ export const SERVICES: Service[] = [
     slug: 'ecommerce',
     name: 'Ecommerce',
     short: 'Turn your store into a profitable growth engine.',
-    h1: 'Ecommerce',
+    h1: 'eCommerce Marketing in Lucknow',
     subtitle: 'Turn your store into a profitable growth engine.',
     description:
       'We help eCommerce brands grow profitably with an integrated approach across SEO, paid ads, creative, and conversion optimization. From store setup to scaling acquisition, we build the systems that increase sales and customer lifetime value.',

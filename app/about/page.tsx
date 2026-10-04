@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { PageHero } from '@/components/PageHero'
 import { Reveal } from '@/components/Reveal'
 import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
 
-export const metadata: Metadata = {
-  title: 'About MARS DIGITAL MARKETING | Digital Marketing Agency',
-  description: 'MARS DIGITAL MARKETING is built for business owners who want marketing that actually performs — strategy, design, content, paid media, and technical execution under one roof.',
-  alternates: { canonical: '/about' },
-}
+export const metadata = pageMetadata(
+  "About Our Digital Marketing Agency in Lucknow",
+  "Meet MARS DIGITAL MARKETING in Lucknow. We bring strategy, content, SEO, paid advertising, web development and creative services together.",
+  "/about",
+)
 
 const why = [
   { t: 'Strategy-first planning', d: 'Every campaign starts with market understanding, not guesswork.', i: 'target' },

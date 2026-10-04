@@ -4,16 +4,19 @@ import { SERVICES, SITE } from '@/lib/site'
 import { Reveal } from './Reveal'
 import { Icon } from './Icons'
 import { CTASection } from './CTASection'
+import { Breadcrumbs } from './Breadcrumbs'
+import { SERVICE_FAQS } from '@/lib/service-faqs'
 
 export function ServicePageLayout({ service }: { service: Service }) {
-  const others = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3)
+  const others = SERVICES.filter((s) => s.slug !== service.slug)
+  const faqs = SERVICE_FAQS[service.slug] || []
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: service.name,
     serviceType: service.name,
     description: service.description,
-    provider: { '@type': 'Organization', name: 'MARS DIGITAL MARKETING', url: SITE.url },
+    provider: { '@id': `${SITE.url}/#organization` },
     areaServed: ['Lucknow', 'India', 'Worldwide'],
     url: `${SITE.url}/${service.slug}`,
     hasOfferCatalog: {
@@ -28,6 +31,7 @@ export function ServicePageLayout({ service }: { service: Service }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
 
       <section className="relative mx-auto max-w-7xl px-5 pb-12 pt-36 md:pt-44">
+        <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: service.name, path: `/${service.slug}` }]} />
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <span className="chip">{service.name}</span>
@@ -89,6 +93,19 @@ export function ServicePageLayout({ service }: { service: Service }) {
         </div>
       </section>
 
+      <section className="mx-auto max-w-4xl px-5 py-14">
+        <h2 className="font-grotesk text-2xl font-bold">{service.name}: common questions</h2>
+        <div className="mt-6 space-y-4">
+          {faqs.map((faq) => (
+            <section key={faq.q} className="glass p-6">
+              <h3 className="font-grotesk text-lg font-semibold">{faq.q}</h3>
+              <p className="mt-3 leading-relaxed text-white/75">{faq.a}</p>
+            </section>
+          ))}
+        </div>
+        <p className="mt-6 text-white/75">Explore our <Link href="/our-work" className="text-mars-300 underline">digital marketing case studies</Link> or <Link href="/contact" className="text-mars-300 underline">discuss your business goals</Link>.</p>
+      </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) }).replace(/</g, '\\u003c') }} />
       <CTASection />
     </>
   )

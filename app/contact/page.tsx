@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import { PageHero } from '@/components/PageHero'
 import { Reveal } from '@/components/Reveal'
 import { Icon } from '@/components/Icons'
 import { ContactForm } from '@/components/ContactForm'
 import { SITE } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Contact MARS DIGITAL MARKETING | Book a Free Strategy Call',
-  description: 'Tell us what you want to achieve. We reply with a practical plan, clear next steps, and honest feedback about what will work best for your business.',
-  alternates: { canonical: '/contact' },
-}
+export const metadata = pageMetadata(
+  "Contact Our Lucknow Marketing Team",
+  "Contact MARS DIGITAL MARKETING in Lucknow for a free strategy call. Discuss your SEO, advertising, website or creative goals and next steps.",
+  "/contact",
+)
 
 const options = [
   { t: 'Book a strategy call', d: 'A free call to map your goals to the right channels.', i: 'phone' },
