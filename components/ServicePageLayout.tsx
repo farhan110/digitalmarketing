@@ -6,6 +6,7 @@ import { Icon } from './Icons'
 import { CTASection } from './CTASection'
 import { Breadcrumbs } from './Breadcrumbs'
 import { SERVICE_FAQS } from '@/lib/service-faqs'
+import { webpageSchema } from '@/lib/schema'
 
 export function ServicePageLayout({ service }: { service: Service }) {
   const others = SERVICES.filter((s) => s.slug !== service.slug)
@@ -13,6 +14,8 @@ export function ServicePageLayout({ service }: { service: Service }) {
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${SITE.url}/${service.slug}#service`,
+    mainEntityOfPage: { '@id': `${SITE.url}/${service.slug}#webpage` },
     name: service.name,
     serviceType: service.name,
     description: service.description,
@@ -106,6 +109,7 @@ export function ServicePageLayout({ service }: { service: Service }) {
         <p className="mt-6 text-white/75">Explore our <Link href="/our-work" className="text-mars-300 underline">digital marketing case studies</Link> or <Link href="/contact" className="text-mars-300 underline">discuss your business goals</Link>.</p>
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) }).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ ...webpageSchema(service.name, service.description, `/${service.slug}`), mainEntity: { '@id': `${SITE.url}/${service.slug}#service` } }).replace(/</g, '\\u003c') }} />
       <CTASection />
     </>
   )

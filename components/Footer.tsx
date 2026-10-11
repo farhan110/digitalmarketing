@@ -12,6 +12,7 @@ export function Footer() {
             <span className="font-grotesk text-xl font-bold">MARS</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/60">
+            <strong className="mb-2 block font-medium text-white/85">{SITE.displayName}</strong>
             MARS DIGITAL MARKETING — SEO, Google Ads, Meta Ads, Social Media, Website Development, Photography &amp; Video, and eCommerce growth systems that move the numbers that matter.
           </p>
         </div>
@@ -29,6 +30,7 @@ export function Footer() {
             <li><Link href="/about" className="transition hover:text-mars-300">About us</Link></li>
             <li><Link href="/our-work" className="transition hover:text-mars-300">Our Work</Link></li>
             <li><Link href="/services" className="transition hover:text-mars-300">Services</Link></li>
+            <li><Link href="/faq" className="transition hover:text-mars-300">FAQs</Link></li>
             <li><Link href="/contact" className="transition hover:text-mars-300">Contact us</Link></li>
           </ul>
         </div>

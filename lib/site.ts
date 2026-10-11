@@ -1,5 +1,6 @@
 export const SITE = {
   name: 'Mars',
+  displayName: 'Mars Digital Marketing Lucknow',
   legalName: 'MARS DIGITAL MARKETING',
   url: 'https://digitalmarketinginlucknow.in',
   title: 'Digital Marketing Agency in Lucknow | MARS DIGITAL MARKETING',

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   ...pageMetadata('Digital Marketing Agency in Lucknow', SITE.description, '/'),
   metadataBase: new URL(SITE.url),
   description: SITE.description,
+  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }, { url: '/mars-icon.png', type: 'image/png', sizes: '96x96' }, { url: '/mars-icon.svg', type: 'image/svg+xml' }], apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }] },
   keywords: [
     'digital marketing agency in Lucknow', 'SEO company in Lucknow', 'Google Ads agency',
     'Meta Ads agency', 'social media marketing', 'website development', 'photography and video production', 'eCommerce marketing',
@@ -33,37 +34,23 @@ export const metadata: Metadata = {
 
 const orgJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': 'Organization',
   '@id': `${SITE.url}/#organization`,
-  name: 'MARS DIGITAL MARKETING',
-  alternateName: 'Mars Digital Marketing Lucknow',
+  name: SITE.displayName,
+  alternateName: ['Mars Digital Marketing', 'MARS'],
+  legalName: SITE.legalName,
+  logo: { '@type': 'ImageObject', '@id': `${SITE.url}/#logo`, url: `${SITE.url}/mars-icon.png`, width: 96, height: 96 },
+  image: `${SITE.url}/opengraph-image`,
   url: SITE.url,
   description: SITE.description,
   telephone: SITE.phone,
-  priceRange: '₹₹',
-  currenciesAccepted: 'INR',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: SITE.locality,
-    addressRegion: SITE.region,
-    addressCountry: 'IN',
-  },
   areaServed: [
     { '@type': 'City', name: 'Lucknow' },
     { '@type': 'Country', name: 'India' },
   ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '10:00',
-      closes: '19:00',
-    },
-  ],
-  sameAs: [],
   makesOffer: SERVICES.map((s) => ({
     '@type': 'Offer',
-    itemOffered: { '@type': 'Service', name: s.name, url: `${SITE.url}/${s.slug}` },
+    itemOffered: { '@type': 'Service', '@id': `${SITE.url}/${s.slug}#service`, name: s.name, url: `${SITE.url}/${s.slug}` },
   })),
 }
 
@@ -72,7 +59,8 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': `${SITE.url}/#website`,
   url: SITE.url,
-  name: 'MARS DIGITAL MARKETING',
+  name: SITE.displayName,
+  alternateName: ['Mars Digital Marketing', 'MARS'],
   publisher: { '@id': `${SITE.url}/#organization` },
   inLanguage: 'en-IN',
 }

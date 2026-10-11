@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { pageMetadata } from '@/lib/seo'
+import { webpageSchema } from '@/lib/schema'
 import { MarsPlanet } from '@/components/MarsPlanet'
 import { Reveal } from '@/components/Reveal'
 import { StatCounter } from '@/components/StatCounter'
 import { Icon } from '@/components/Icons'
 import { CTASection } from '@/components/CTASection'
-import { SERVICES, CASE_STUDIES, FAQS } from '@/lib/site'
+import { SITE, SERVICES, CASE_STUDIES, FAQS } from '@/lib/site'
 
 export const metadata = pageMetadata(
   "Digital Marketing Agency in Lucknow",
@@ -21,16 +22,10 @@ const steps = [
   { n: '03', title: 'Grow', text: 'We measure, report, and improve based on data, so growth compounds month after month.', icon: 'chart' },
 ]
 
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-}
-
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema(SITE.displayName, SITE.description, '/')) }} />
 
       {/* HERO */}
       <section className="relative mx-auto max-w-7xl px-5 pb-16 pt-36 md:pt-44">
@@ -46,7 +41,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={240}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-                MARS DIGITAL MARKETING is a results-driven digital marketing agency in Lucknow helping businesses grow their online visibility, generate qualified leads, and increase revenue through data-backed marketing strategies. We specialize in SEO, Google Ads, Meta Ads, Social Media Marketing, Website Development, Photography &amp; Video Production, and eCommerce marketing solutions designed to help brands stand out in today&apos;s competitive digital landscape.
+                Mars Digital Marketing Lucknow is a results-driven digital marketing agency in Lucknow helping businesses grow their online visibility, generate qualified leads, and increase revenue through data-backed marketing strategies. We specialize in SEO, Google Ads, Meta Ads, Social Media Marketing, Website Development, Photography &amp; Video Production, and eCommerce marketing solutions designed to help brands stand out in today&apos;s competitive digital landscape.
               </p>
             </Reveal>
             <Reveal delay={360}>

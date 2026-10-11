@@ -10,7 +10,7 @@ export function pageMetadata(title: string, description: string, path: string, k
     keywords,
     alternates: { canonical: url },
     openGraph: {
-      type: 'website', locale: 'en_IN', siteName: SITE.legalName,
+      type: 'website', locale: 'en_IN', siteName: SITE.displayName,
       title: fullTitle, description, url,
       images: [{ url: `${SITE.url}/opengraph-image`, width: 1200, height: 630, alt: SITE.legalName }],
     },
